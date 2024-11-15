@@ -12,7 +12,7 @@ const Data = require('./models/Data');
 const app = express();
 
 app.use(cors({
-    origin: 'https://frontendmonitor.vercel.app', // Your frontend URL
+    origin: '*', // Your frontend URL
     methods: ['GET', 'POST'],
 }));
 
