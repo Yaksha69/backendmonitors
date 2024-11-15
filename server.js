@@ -41,7 +41,7 @@ mongoose.connect(process.env.DB_URI)
         };
 
         // Fetch and send the latest data every 2 seconds
-        setInterval(sendDataToAbly, 2000);
+        setInterval(sendDataToAbly, 200);
 
     })
     .catch(err => {
