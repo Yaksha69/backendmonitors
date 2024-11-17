@@ -1,14 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const { addData, getAllData, sseHandler } = require('../controllers/dataController');
+const express = require('express')
+const router = express.Router()
 
-// POST request to add new data
-router.post('/new', addData);
+const {addData, getAllData} = require('../controllers/dataController')
 
-// GET request to fetch all data
-router.get('/all', getAllData);
+//POST REQUEST
+router.post('/new', addData)
 
-// SSE endpoint for real-time updates
-router.get('/events', sseHandler);
+//GET REQUEST
+router.get('/all', getAllData)
 
-module.exports = router;
+//router.get('/getdata', getData)
+
+module.exports = router
