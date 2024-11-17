@@ -1,14 +1,15 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-const {addData, getAllData} = require('../controllers/dataController')
+const { addData, getAllData, sseHandler } = require('../controllers/dataController');
 
-//POST REQUEST
-router.post('/new', addData)
+// POST REQUEST
+router.post('/new', addData);
 
-//GET REQUEST
-router.get('/all', getAllData)
+// GET REQUEST
+router.get('/all', getAllData);
 
-//router.get('/getdata', getData)
+// SSE Endpoint
+router.get('/events', sseHandler);
 
-module.exports = router
+module.exports = router;
