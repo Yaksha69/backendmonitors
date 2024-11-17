@@ -1,8 +1,5 @@
-const Data = require('../models/Data'); // Assuming Data model is already defined
-
 let clients = [];
 
-// SSE handler to send data to all connected clients
 const sseHandler = (req, res) => {
     // Set headers to establish an SSE connection
     res.setHeader('Content-Type', 'text/event-stream');
@@ -19,14 +16,12 @@ const sseHandler = (req, res) => {
     });
 };
 
-// Function to send data to all connected clients
 const sendDataToClients = (data) => {
     clients.forEach(client => {
         client.write(`data: ${JSON.stringify(data)}\n\n`); // Send data to each client
     });
 };
 
-// Add new data to the database and send to clients
 const addData = async (req, res) => {
     const { voltage, current, power, energy } = req.body;
 
@@ -41,11 +36,10 @@ const addData = async (req, res) => {
     }
 };
 
-// Get all data from the database
 const getAllData = async (req, res) => {
     try {
-        const data = await Data.find().sort({ createdAt: -1 }); // Sort by createdAt, latest first
-        res.status(200).json(data); // Send data as JSON
+        const data = await Data.find();
+        res.status(200).json(data);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -53,6 +47,6 @@ const getAllData = async (req, res) => {
 
 module.exports = {
     addData,
-    getAllData, // Make sure this function is exported
+    getAllData,
     sseHandler,
 };
